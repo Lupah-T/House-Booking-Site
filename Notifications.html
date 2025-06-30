@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notifications</title>
+</head>
+<body>
+  <h2>Vacancy Alerts</h2>
+  <div id="notificationsList"></div>
+
+  <script>
+    fetch('http://localhost:5000/api/notifications/student', {
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+    })
+    .then(res => res.json())
+    .then(notes => {
+      notes.forEach(note => {
+        const div = document.createElement('div');
+        div.innerHTML = `<strong>${note.area}</strong>: ${note.message}`;
+        document.getElementById('notificationsList').appendChild(div);
+      });
+    });
+  </script>
+</body>
+</html>
