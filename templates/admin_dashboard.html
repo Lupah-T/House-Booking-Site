@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-purple-700">Admin Dashboard</h1>
+    <a href="/admin/logout" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>
+  </div>
+
+  <!-- Bookings Section -->
+  <h2 class="text-xl font-semibold text-gray-700 mb-3">Bookings</h2>
+  <div class="overflow-auto mb-8">
+    <table class="min-w-full bg-white shadow rounded">
+      <thead class="bg-purple-700 text-white">
+        <tr>
+          <th class="px-4 py-2">ID</th>
+          <th class="px-4 py-2">Name</th>
+          <th class="px-4 py-2">Phone</th>
+          <th class="px-4 py-2">House</th>
+          <th class="px-4 py-2">Check-in</th>
+          <th class="px-4 py-2">Duration</th>
+          <th class="px-4 py-2">Paid</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in bookings %}
+        <tr class="border-b text-center">
+          <td class="px-4 py-2">{{ booking[0] }}</td>
+          <td class="px-4 py-2">{{ booking[1] }}</td>
+          <td class="px-4 py-2">{{ booking[2] }}</td>
+          <td class="px-4 py-2">{{ booking[3] }}</td>
+          <td class="px-4 py-2">{{ booking[4] }}</td>
+          <td class="px-4 py-2">{{ booking[5] }}</td>
+          <td class="px-4 py-2">{{ "Yes" if booking[6] else "No" }}</td>
+          <td class="px-4 py-2">
+            <a href="/admin/delete-booking/{{ booking[0] }}" class="text-red-600 hover:underline">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Houses Section -->
+  <h2 class="text-xl font-semibold text-gray-700 mb-3">Houses</h2>
+  <div class="overflow-auto">
+    <table class="min-w-full bg-white shadow rounded">
+      <thead class="bg-purple-700 text-white">
+        <tr>
+          <th class="px-4 py-2">ID</th>
+          <th class="px-4 py-2">Name</th>
+          <th class="px-4 py-2">Location</th>
+          <th class="px-4 py-2">Image</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for house in houses %}
+        <tr class="border-b text-center">
+          <td class="px-4 py-2">{{ house[0] }}</td>
+          <td class="px-4 py-2">{{ house[1] }}</td>
+          <td class="px-4 py-2">{{ house[3] }}</td>
+          <td class="px-4 py-2">
+            <img src="{{ url_for('static', filename='images/' + house[4]) }}" class="h-12 mx-auto" alt="House Image">
+          </td>
+          <td class="px-4 py-2">
+            <a href="/admin/delete-house/{{ house[0] }}" class="text-red-600 hover:underline">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
