@@ -40,9 +40,7 @@ A full-stack web application that allows campus students to book rental houses o
 
 ---
 
-## 🖼️ Screenshots
-
-> Add your screenshots here or link to them once hosted.
+⚠️ Note: The original app.py file was removed from this repository to prevent exposing sensitive configuration details. A sanitized version may be re-uploaded later with environment variables and secure best practices in place.
 
 ---
 
