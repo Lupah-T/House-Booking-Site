@@ -54,7 +54,10 @@ def init_db():
         cur.execute("PRAGMA table_info(bookings)")
         cols = [col[1] for col in cur.fetchall()]
         if 'mpesa_code' not in cols:
-            cur.execute("ALTER TABLE bookings ADD COLUMN mpesa_code TEXT")
+            try:
+                cur.execute("ALTER TABLE bookings ADD COLUMN mpesa_code TEXT")
+            except Exception as e:
+                print(f"Skipping mpesa_code add: {e}")
 
         # Houses Table
         cur.execute('''CREATE TABLE IF NOT EXISTS houses (
@@ -82,7 +85,10 @@ def init_db():
         cur.execute("PRAGMA table_info(students)")
         cols = [col[1] for col in cur.fetchall()]
         if 'email' not in cols:
-            cur.execute("ALTER TABLE students ADD COLUMN email TEXT UNIQUE")
+            try:
+                cur.execute("ALTER TABLE students ADD COLUMN email TEXT")
+            except Exception as e:
+                print(f"Skipping student email add: {e}")
 
         # Admins Table
         cur.execute('''CREATE TABLE IF NOT EXISTS admins (
@@ -95,7 +101,10 @@ def init_db():
         cur.execute("PRAGMA table_info(admins)")
         cols = [col[1] for col in cur.fetchall()]
         if 'email' not in cols:
-            cur.execute("ALTER TABLE admins ADD COLUMN email TEXT UNIQUE")
+            try:
+                cur.execute("ALTER TABLE admins ADD COLUMN email TEXT")
+            except Exception as e:
+                print(f"Skipping admin email add: {e}")
 
         # Landlords Table
         cur.execute('''CREATE TABLE IF NOT EXISTS landlords (
@@ -108,7 +117,10 @@ def init_db():
         cur.execute("PRAGMA table_info(landlords)")
         cols = [col[1] for col in cur.fetchall()]
         if 'email' not in cols:
-            cur.execute("ALTER TABLE landlords ADD COLUMN email TEXT UNIQUE")
+            try:
+                cur.execute("ALTER TABLE landlords ADD COLUMN email TEXT")
+            except Exception as e:
+                print(f"Skipping landlord email add: {e}")
 
         db.commit()
 
