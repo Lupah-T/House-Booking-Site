@@ -424,8 +424,12 @@ def admin_delete_house(id):
 # ======================== #
 # RUN
 # ======================== #
-if __name__ == "__main__":
+
+# Initialize DB when the module is loaded
+with app.app_context():
     init_db()
+
+if __name__ == "__main__":
     port = int(os.environ.get("PORT", 3000))
     app.run(host='0.0.0.0', port=port, debug=True)
 

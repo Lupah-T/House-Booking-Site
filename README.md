@@ -40,7 +40,20 @@ A full-stack web application that allows campus students to book rental houses o
 
 ---
 
-⚠️ Note: The original app.py file was removed from this repository to prevent exposing sensitive configuration details. A sanitized version may be re-uploaded later with environment variables and secure best practices in place.
+## 🔒 Security & Environment Variables
+
+This application uses a `.env` file for sensitive configuration. **Never commit your `.env` file to GitHub.**
+
+### Required Variables:
+- `FLASK_SECRET_KEY`: Used to sign session cookies.
+- `SENDER_EMAIL`: Your Gmail address for notifications.
+- `SENDER_PASSWORD`: Your Gmail App Password.
+
+### Generating a Secret Key:
+If you need a new secret key, run:
+```bash
+python3 -c 'import secrets; print(secrets.token_hex(24))'
+```
 
 ---
 
