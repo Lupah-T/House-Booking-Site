@@ -1,59 +1,72 @@
 {% extends "layout.html" %}
 
-{% block title %}Student Dashboard - HomeHaven{% endblock %}
+{% block title %}Student Dashboard - CampusRooms{% endblock %}
 
 {% block content %}
-<div class="animate-fade-in">
+<div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-12 animate-fade-in">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
     <div>
-      <h1 class="text-4xl font-black text-[#003366] mb-2 uppercase italic tracking-tight">Student Portal</h1>
-      <p class="text-gray-500 font-medium">Manage your campus housing applications.</p>
+      <h1 class="text-4xl font-black text-white mb-2 uppercase italic tracking-tight">Student <span
+          class="text-[#FFCC00]">Portal</span></h1>
+      <p class="text-gray-400 font-medium">Manage your campus housing applications.</p>
     </div>
     <div class="flex gap-4">
-      <a href="/house" class="btn-primary shadow-lg border-b-4 border-[#00264d]">EXPLORE ROOMS</a>
+      <a href="/house" class="btn-primary py-3 px-8 text-[10px] shadow-xl">EXPLORE ROOMS</a>
     </div>
   </div>
 
   <!-- Quick Stats -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-    <div class="glass-card p-10 bg-[#003366] text-white overflow-hidden relative group">
-      <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition duration-500">
-        <i class="fas fa-id-badge text-9xl"></i>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+    <div class="glass-card p-10 bg-[#FFCC00] text-[#001f3f] overflow-hidden relative group border-none">
+      <div class="absolute -right-8 -bottom-8 p-4 opacity-10 group-hover:scale-110 transition duration-700">
+        <i class="fas fa-user-graduate text-[12rem]"></i>
       </div>
       <div class="relative z-10">
-        <div class="text-[10px] font-black uppercase tracking-widest text-[#FFCC00] mb-4">Account Information</div>
-        <h2 class="text-3xl font-black mb-1">{{ session.get('student')['name'] }}</h2>
-        <div class="text-sm opacity-80 mb-6">{{ session.get('student')['email'] }}</div>
-        <div class="flex items-center gap-2 text-xs font-bold bg-white/10 w-fit px-3 py-1 rounded">
+        <div class="text-[10px] font-black uppercase tracking-widest text-[#001f3f]/60 mb-6">Verified Student Profile
+        </div>
+        <h2 class="text-4xl font-black mb-1 antialiased">{{ session.get('student')['name'] }}</h2>
+        <div class="text-sm font-bold opacity-70 mb-8">{{ session.get('student')['email'] }}</div>
+        <div
+          class="flex items-center gap-3 text-[10px] font-black bg-black/5 w-fit px-4 py-2 rounded-xl border border-black/10">
           <i class="fas fa-university"></i>
-          MUT STUDENT - YEAR {{ session.get('student')['year'] }}
+          MUT CAMPUS • YEAR {{ session.get('student')['year'] }}
         </div>
       </div>
     </div>
 
-    <div class="glass-card p-10 border-2 border-[#FFCC00] bg-white flex flex-col justify-center">
-      <div class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Need Assistance?</div>
-      <h3 class="text-2xl font-black text-[#003366] mb-4">Institutional Housing Support</h3>
-      <p class="text-gray-500 text-sm mb-6">If you encounter issues with your booking or payment verification, contact
-        our support team immediately.</p>
-      <a href="/contact"
-        class="text-[#003366] font-extrabold text-sm hover:text-[#FFCC00] transition flex items-center gap-2 uppercase">
-        Open Support Ticket <i class="fas fa-headset"></i>
-      </a>
+    <div class="glass-card p-10 bg-[#1e293b]/40 border-white/5 flex flex-col justify-center relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#FFCC00]/5 rounded-full blur-3xl"></div>
+      <div class="relative z-10">
+        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-4 tracking-widest">Need
+          Assistance?</div>
+        <h3 class="text-2xl font-black text-white mb-4 italic uppercase">Institutional Support</h3>
+        <p class="text-gray-400 text-sm mb-8 leading-relaxed">Encountering issues with verification or payments? Our
+          institutional support team is available 24/7 to assist you.</p>
+        <a href="/contact"
+          class="inline-flex items-center gap-3 text-[#FFCC00] font-black text-xs hover:text-white transition-all uppercase tracking-widest">
+          Open Support Ticket <i class="fas fa-chevron-right text-[10px]"></i>
+        </a>
+      </div>
     </div>
   </div>
 
   <!-- Recent Activity -->
-  <div class="glass-card p-8 bg-white border-t-8 border-[#003366] shadow-xl">
-    <div class="flex justify-between items-center mb-8">
-      <h3 class="text-xl font-black text-[#003366] uppercase italic">Application Status</h3>
+  <div class="glass-card p-10 bg-[#1e293b]/30 border-white/5 shadow-2xl">
+    <div class="flex justify-between items-center mb-10">
+      <h3 class="text-xl font-black text-white uppercase italic tracking-wider"><i
+          class="fas fa-tasks mr-3 text-[#FFCC00]"></i>Application Status</h3>
       <a href="/my-bookings"
-        class="text-xs font-black text-[#003366] underline decoration-[#FFCC00] underline-offset-4">VIEW FULL
-        HISTORY</a>
+        class="text-[10px] font-black text-[#FFCC00] hover:text-white transition-colors uppercase tracking-widest border-b border-[#FFCC00]/30 pb-1">Full
+        Transaction History</a>
     </div>
-    <!-- Booking preview if any -->
-    <p class="text-gray-400 text-sm italic">Access your full booking history and transaction codes through the
-      navigation menu.</p>
+
+    <div class="flex flex-col items-center justify-center py-12 text-center opacity-40">
+      <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-6">
+        <i class="fas fa-folder-open text-2xl"></i>
+      </div>
+      <p class="text-gray-400 text-sm font-medium max-w-sm">No active applications found. Explore available rooms to
+        start your booking process.</p>
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -1,84 +1,104 @@
+```
 {% extends "layout.html" %}
 
-{% block title %}Confirm Booking - HomeHaven{% endblock %}
+{% block title %}Confirm Booking - CampusRooms{% endblock %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto py-10 animate-fade-in">
-  <div class="text-center mb-10">
-    <h1 class="text-4xl font-extrabold text-[#003366] mb-4 uppercase italic">Secure This Room</h1>
-    <p class="text-gray-500 font-medium">Provide your transaction details to finalize the booking.</p>
+<div class="max-w-2xl mx-auto py-12 md:py-20 animate-fade-in px-4">
+  <div class="text-center mb-12">
+    <div
+      class="inline-flex items-center justify-center w-16 h-16 bg-[#FFCC00]/10 rounded-2xl mb-6 shadow-xl border border-[#FFCC00]/20">
+      <i class="fas fa-key text-[#FFCC00] text-3xl"></i>
+    </div>
+    <h1 class="text-4xl font-black text-white mb-2 uppercase italic tracking-tight">Secure This <span
+        class="text-[#FFCC00]">Room</span></h1>
+    <p class="text-gray-400 text-sm font-medium">Finalize your application near MUT Campus.</p>
   </div>
 
-  <div class="glass-card p-10 rounded-3xl bg-white shadow-2xl border-t-8 border-[#FFCC00]">
-    <form method="POST" action="/booking" class="space-y-8">
+  <div
+    class="glass-card p-10 rounded-[2rem] bg-[#1e293b]/60 backdrop-blur-2xl border border-white/5 shadow-2xl relative overflow-hidden">
+    <div class="absolute -top-12 -right-12 w-32 h-32 bg-[#FFCC00]/5 rounded-full blur-3xl"></div>
+    <form method="POST" action="/booking" class="space-y-8 relative z-10">
 
       <!-- Selected Property Info -->
-      <div class="p-4 bg-[#f8fafc] rounded-xl border border-[#003366]/10 mb-6">
-        <h3 class="text-[10px] font-black text-[#003366] uppercase mb-1 tracking-widest">Selected Property</h3>
-        <div class="text-lg font-bold text-[#003366]">{{ house.name if house else 'General Application' }}</div>
-        <div class="text-xs text-gray-500 font-medium">{{ house.location if house else 'Multiple Areas' }} | {{
-          house.house_type if house else 'Any Type' }}</div>
+      <div class="p-6 bg-white/5 rounded-2xl border border-[#FFCC00]/10 mb-8">
+        <h3 class="text-[10px] font-black text-[#FFCC00] uppercase mb-2 tracking-widest opacity-70">Selected Asset</h3>
+        <div class="text-xl font-black text-white mb-1">{{ house.name if house else 'General Application' }}</div>
+        <div class="text-xs text-gray-500 font-bold uppercase tracking-tighter">
+          <i class="fas fa-map-marker-alt mr-1"></i> {{ house.location if house else 'Prime Area' }} • {{
+          house.house_type if house else 'Standard Unit' }}
+        </div>
         <input type="hidden" name="house_name" value="{{ house.name if house else 'General Submission' }}">
         <input type="hidden" name="house_id" value="{{ house.id if house else '' }}">
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="space-y-2">
-          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Full Name</label>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Full Legal
+            Name</label>
           <input type="text" name="fullname" placeholder="John Doe" required class="input-field" />
         </div>
 
-        <div class="space-y-2">
-          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Phone Number</label>
-          <input type="text" name="phone" placeholder="0712345678" required class="input-field" />
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Contact
+            Phone</label>
+          <input type="text" name="phone" placeholder="0712 XXX XXX" required class="input-field" />
         </div>
       </div>
 
-      <div class="space-y-2">
-        <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Email Address</label>
+      <div class="space-y-3">
+        <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Current
+          Email</label>
         <input type="email" name="email" placeholder="student@email.com" required class="input-field" />
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="space-y-2">
-          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Check-in Date</label>
-          <input type="date" name="checkin" required class="input-field" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Intended
+            Check-in</label>
+          <input type="date" name="checkin" required class="input-field cursor-pointer" />
         </div>
 
-        <div class="space-y-2">
-          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Stay Duration (Months)</label>
-          <input type="number" name="duration" placeholder="e.g. 6" required class="input-field" />
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Duration
+            (Mo)</label>
+          <input type="number" name="duration" placeholder="e.g. 4" required class="input-field" />
         </div>
       </div>
 
       <!-- M-Pesa Section -->
-      <div class="p-6 bg-[#f0f4f8] rounded-xl border-2 border-[#003366]/10">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 bg-[#10b981] rounded flex items-center justify-center text-white shadow-md">
-            <i class="fas fa-mobile-alt"></i>
+      <div class="p-8 bg-black/20 rounded-[2rem] border border-[#10b981]/20 group">
+        <div class="flex items-center gap-4 mb-6">
+          <div
+            class="w-12 h-12 bg-[#10b981]/10 rounded-xl flex items-center justify-center text-[#10b981] border border-[#10b981]/20 shadow-xl group-hover:scale-110 transition-transform">
+            <i class="fas fa-mobile-alt text-xl"></i>
           </div>
-          <h3 class="font-bold text-[#003366] uppercase text-sm">M-Pesa Payment Verification</h3>
+          <h3 class="font-black text-white uppercase text-xs tracking-widest">Payment Verification</h3>
         </div>
-        <div class="space-y-4">
-          <p class="text-[10px] text-gray-500 leading-relaxed italic uppercase font-bold">Please pay the commitment fee
-            to <strong>LupahTech Business No: 123456</strong> and enter the transaction code below.</p>
-          <div class="space-y-2">
-            <label class="text-[10px] font-black text-[#003366] uppercase ml-1">M-Pesa Transaction Code</label>
-            <input type="text" name="mpesa_code" placeholder="E.g. RKX789LMN" required
-              class="input-field border-[#10b981]/30 focus:border-[#10b981] font-mono text-center text-lg" />
+        <div class="space-y-6">
+          <div class="text-[10px] text-gray-400 leading-relaxed uppercase font-bold px-1">
+            Pay commitment fee to <span class="text-[#10b981]">LupahTech Business: 123456</span>. Enter reference below.
+          </div>
+          <div class="space-y-3">
+            <label class="text-[9px] font-black text-[#10b981] uppercase ml-1 opacity-80 tracking-[0.2em]">Transaction
+              Ref</label>
+            <input type="text" name="mpesa_code" placeholder="E.g. RKX...LMN" required
+              class="input-field border-[#10b981]/20 focus:border-[#10b981] font-mono text-center text-xl uppercase tracking-widest text-[#10b981] placeholder:text-[#10b981]/20" />
           </div>
         </div>
       </div>
 
-      <button type="submit" class="w-full btn-primary py-4 rounded shadow-lg flex items-center justify-center gap-3">
-        <i class="fas fa-lock"></i>
-        SECURE BOOKING NOW
+      <button type="submit"
+        class="w-full btn-primary py-5 rounded-xl shadow-2xl flex items-center justify-center gap-4 text-xs font-black">
+        <i class="fas fa-shield-check"></i>
+        SECURE THIS PROPERTY
       </button>
 
-      <p class="text-center text-[10px] text-gray-400 px-6 uppercase font-bold">
-        Verified by LupahTech Solutions &bull; Official Student Housing Portal
+      <p class="text-center text-[9px] text-gray-500 px-6 uppercase font-black tracking-widest opacity-60">
+        System Secured by LupahTech &bull; Official Partner of MUT Housing
       </p>
     </form>
   </div>
 </div>
 {% endblock %}
+```

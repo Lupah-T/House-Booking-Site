@@ -50,6 +50,12 @@ def init_db():
             status TEXT DEFAULT 'Pending'
         )''')
 
+        # Add mpesa_code to bookings if not exists
+        cur.execute("PRAGMA table_info(bookings)")
+        cols = [col[1] for col in cur.fetchall()]
+        if 'mpesa_code' not in cols:
+            cur.execute("ALTER TABLE bookings ADD COLUMN mpesa_code TEXT")
+
         # Houses Table
         cur.execute('''CREATE TABLE IF NOT EXISTS houses (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,6 +78,11 @@ def init_db():
             reg_no TEXT UNIQUE,
             password TEXT
         )''')
+        # Fix missing email column in existing students table
+        cur.execute("PRAGMA table_info(students)")
+        cols = [col[1] for col in cur.fetchall()]
+        if 'email' not in cols:
+            cur.execute("ALTER TABLE students ADD COLUMN email TEXT UNIQUE")
 
         # Admins Table
         cur.execute('''CREATE TABLE IF NOT EXISTS admins (
@@ -80,6 +91,11 @@ def init_db():
             username TEXT UNIQUE,
             password TEXT
         )''')
+        # Fix missing email column in existing admins table
+        cur.execute("PRAGMA table_info(admins)")
+        cols = [col[1] for col in cur.fetchall()]
+        if 'email' not in cols:
+            cur.execute("ALTER TABLE admins ADD COLUMN email TEXT UNIQUE")
 
         # Landlords Table
         cur.execute('''CREATE TABLE IF NOT EXISTS landlords (
@@ -88,6 +104,11 @@ def init_db():
             username TEXT UNIQUE,
             password TEXT
         )''')
+        # Fix missing email column in existing landlords table
+        cur.execute("PRAGMA table_info(landlords)")
+        cols = [col[1] for col in cur.fetchall()]
+        if 'email' not in cols:
+            cur.execute("ALTER TABLE landlords ADD COLUMN email TEXT UNIQUE")
 
         db.commit()
 

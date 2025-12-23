@@ -1,79 +1,94 @@
 {% extends "layout.html" %}
 
-{% block title %}Admin Control Center - HomeHaven{% endblock %}
+{% block title %}Admin Control Center - CampusRooms{% endblock %}
 
 {% block content %}
-<div class="animate-fade-in">
+<div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-12 animate-fade-in">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
     <div>
-      <h1 class="text-4xl font-black text-[#003366] mb-2 uppercase italic tracking-tight">Admin Control Center</h1>
-      <p class="text-gray-500 font-medium">LupahTech Integrated Management System</p>
+      <h1 class="text-4xl font-black text-white mb-2 uppercase italic tracking-tight">Admin <span
+          class="text-[#FFCC00]">Control</span> Center</h1>
+      <p class="text-gray-400 font-medium">LupahTech Integrated Management System</p>
     </div>
-    <div class="flex gap-4">
-      <a href="/landlord-signup" class="btn-primary shadow-lg border-b-4 border-[#00264d]">ADD NEW LANDLORD</a>
+    <div class="flex flex-wrap gap-4">
+      <a href="/landlord-signup" class="btn-primary py-3 px-8 text-[10px] shadow-xl">ADD NEW LANDLORD</a>
       <a href="/logout"
-        class="bg-white border-2 border-red-500 text-red-500 px-6 py-2.5 rounded font-bold hover:bg-red-50 transition">LOGOUT</a>
+        class="bg-white/5 border border-white/10 text-white px-8 py-3 rounded-lg text-[10px] font-black hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/30 transition uppercase tracking-widest">LOGOUT</a>
     </div>
   </div>
 
   <!-- Stats Overview -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-    <div class="glass-card p-6 bg-white border-l-4 border-[#003366]">
-      <div class="text-xs font-black text-gray-400 uppercase mb-1">Total Bookings</div>
-      <div class="text-3xl font-black text-[#003366]">{{ bookings|length }}</div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+    <div class="glass-card p-8 bg-[#1e293b]/50 border-white/5 relative overflow-hidden group">
+      <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity">
+        <i class="fas fa-receipt text-9xl text-white"></i>
+      </div>
+      <div class="text-[10px] font-black text-gray-500 uppercase mb-2 tracking-widest">Total Transactions</div>
+      <div class="text-4xl font-black text-white group-hover:text-[#FFCC00] transition-colors">{{ bookings|length }}
+      </div>
     </div>
-    <div class="glass-card p-6 bg-white border-l-4 border-[#FFCC00]">
-      <div class="text-xs font-black text-gray-400 uppercase mb-1">Active Houses</div>
-      <div class="text-3xl font-black text-[#003366]">{{ houses|length }}</div>
+    <div class="glass-card p-8 bg-[#1e293b]/50 border-white/5 relative overflow-hidden group">
+      <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity">
+        <i class="fas fa-home text-9xl text-white"></i>
+      </div>
+      <div class="text-[10px] font-black text-gray-500 uppercase mb-2 tracking-widest">Active Inventory</div>
+      <div class="text-4xl font-black text-white group-hover:text-[#FFCC00] transition-colors">{{ houses|length }}</div>
     </div>
-    <div class="glass-card p-6 bg-white border-l-4 border-[#10b981]">
-      <div class="text-xs font-black text-gray-400 uppercase mb-1">Revenue Generated</div>
-      <div class="text-3xl font-black text-[#003366]">Ksh {{ (bookings|length * 500) }}</div>
+    <div class="glass-card p-8 bg-[#1e293b]/50 border-white/5 relative overflow-hidden group">
+      <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity">
+        <i class="fas fa-coins text-9xl text-white"></i>
+      </div>
+      <div class="text-[10px] font-black text-gray-500 uppercase mb-2 tracking-widest">Projected Revenue</div>
+      <div class="text-4xl font-black text-white group-hover:text-[#FFCC00] transition-colors">KSh {{ (bookings|length *
+        500) }}</div>
     </div>
   </div>
 
-  <div class="space-y-12">
+  <div class="space-y-16">
     <!-- Bookings Management -->
-    <div class="glass-card rounded-2xl overflow-hidden shadow-xl bg-white border-b-8 border-[#003366]">
-      <div class="p-6 bg-[#f8fafc] border-b border-gray-100 flex justify-between items-center">
-        <h2 class="text-xl font-black text-[#003366] uppercase italic"><i class="fas fa-receipt mr-3"></i>Recent
-          Bookings</h2>
+    <div class="glass-card rounded-[2rem] overflow-hidden shadow-2xl bg-[#1e293b]/30 border-white/5">
+      <div class="p-8 bg-white/5 border-b border-white/5 flex justify-between items-center">
+        <h2 class="text-lg font-black text-white uppercase italic tracking-wider"><i
+            class="fas fa-history mr-3 text-[#FFCC00]"></i>Recent Transactions</h2>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full text-left">
-          <thead class="bg-[#003366] text-white">
-            <tr>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Student Details</th>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Property</th>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">M-Pesa Code</th>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Status</th>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Action</th>
+          <thead>
+            <tr class="bg-black/20">
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Client</th>
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Asset</th>
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Payment Ref</th>
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Status</th>
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest text-right">Ops</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-50">
+          <tbody class="divide-y divide-white/5">
             {% for booking in bookings %}
-            <tr class="hover:bg-[#f0f4f8]/50 transition">
-              <td class="px-6 py-4">
-                <div class="font-bold text-gray-900 text-sm">{{ booking[1] }}</div>
-                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">{{ booking[2] }}</div>
+            <tr class="hover:bg-white/5 transition duration-300 group">
+              <td class="px-8 py-6">
+                <div class="font-black text-white text-sm tracking-tight">{{ booking[1] }}</div>
+                <div class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mt-1">{{ booking[2] }}</div>
               </td>
-              <td class="px-6 py-4 text-xs text-[#003366] font-black italic">{{ booking[3] }}</td>
-              <td class="px-6 py-4">
+              <td class="px-8 py-6">
+                <div class="text-xs text-[#FFCC00] font-black italic">{{ booking[3] }}</div>
+              </td>
+              <td class="px-8 py-6">
                 <span
-                  class="bg-[#f0f4f8] border border-[#003366]/20 px-2 py-1 rounded text-xs font-mono font-bold text-[#003366]">
-                  {{ booking[8] if booking[8] else 'N/A' }}
+                  class="bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg text-[10px] font-mono font-black text-white/70">
+                  {{ booking[8] if booking[8] else 'PENDING' }}
                 </span>
               </td>
-              <td class="px-6 py-4">
-                <span class="text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest 
+              <td class="px-8 py-6">
+                <span class="text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-tighter shadow-inner
                                     {% if booking[9] == 'Confirmed' %}badge-vacant{% else %}badge-booked{% endif %}">
-                  {{ booking[9] if booking[9] else 'Pending' }}
+                  {{ booking[9] if booking[9] else 'Processing' }}
                 </span>
               </td>
-              <td class="px-6 py-4">
-                <a href="/admin/delete-booking/{{ booking[0] }}" class="text-red-500 hover:text-red-700 transition"
+              <td class="px-8 py-6 text-right">
+                <a href="/admin/delete-booking/{{ booking[0] }}"
+                  class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition"
                   onclick="return confirm('Archive this transaction?')">
-                  <i class="fas fa-trash-alt"></i>
+                  <i class="fas fa-trash-alt text-xs"></i>
                 </a>
               </td>
             </tr>
@@ -83,41 +98,44 @@
       </div>
     </div>
 
-    <!-- Houses Management -->
-    <div class="glass-card rounded-2xl overflow-hidden shadow-xl bg-white border-b-8 border-[#FFCC00]">
-      <div class="p-6 bg-[#f8fafc] border-b border-gray-100 flex justify-between items-center">
-        <h2 class="text-xl font-black text-[#003366] uppercase italic"><i
-            class="fas fa-home mr-3 text-[#FFCC00]"></i>Property Listings</h2>
+    <!-- Inventory Management -->
+    <div class="glass-card rounded-[2rem] overflow-hidden shadow-2xl bg-[#1e293b]/30 border-white/5">
+      <div class="p-8 bg-white/5 border-b border-white/5 flex justify-between items-center">
+        <h2 class="text-lg font-black text-white uppercase italic tracking-wider"><i
+            class="fas fa-boxes mr-3 text-[#FFCC00]"></i>Inventory Control</h2>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full text-left">
-          <thead class="bg-[#00264d] text-white">
-            <tr>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Property Name</th>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Price/Month</th>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Status</th>
-              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Action</th>
+          <thead>
+            <tr class="bg-black/20">
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Resource Name</th>
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Rate (PM)</th>
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Lifecycle</th>
+              <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest text-right">Ops</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-50">
+          <tbody class="divide-y divide-white/5">
             {% for house in houses %}
-            <tr class="hover:bg-[#f0f4f8]/50 transition">
-              <td class="px-6 py-4">
-                <div class="font-bold text-gray-900 text-sm">{{ house[1] }}</div>
-                <div class="text-[10px] font-bold text-gray-400 uppercase">{{ house[3] }}</div>
+            <tr class="hover:bg-white/5 transition duration-300">
+              <td class="px-8 py-6">
+                <div class="font-black text-white text-sm tracking-tight">{{ house[1] }}</div>
+                <div class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mt-1">{{ house[3] }}</div>
               </td>
-              <td class="px-6 py-4 text-sm font-black text-[#003366]">Ksh {{ house[4] }}</td>
-              <td class="px-6 py-4">
+              <td class="px-8 py-6">
+                <div class="text-sm font-black text-[#FFCC00]">KSh {{ house[4] }}</div>
+              </td>
+              <td class="px-8 py-6">
                 <span
-                  class="text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest 
+                  class="text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-tighter shadow-inner
                                     {% if house.availability == 'Vacant' %}badge-vacant{% else %}badge-booked{% endif %}">
                   {{ house.availability }}
                 </span>
               </td>
-              <td class="px-6 py-4">
-                <a href="/admin/delete-house/{{ house[0] }}" class="text-red-500 hover:text-red-700 transition"
-                  onclick="return confirm('Remove this listing permamently?')">
-                  <i class="fas fa-trash-alt"></i>
+              <td class="px-8 py-6 text-right">
+                <a href="/admin/delete-house/{{ house[0] }}"
+                  class="w-8 h-8 inline-flex items-center justify-center rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition"
+                  onclick="return confirm('Remove this listing permanently?')">
+                  <i class="fas fa-trash-alt text-xs"></i>
                 </a>
               </td>
             </tr>

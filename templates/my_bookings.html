@@ -1,48 +1,50 @@
 {% extends "layout.html" %}
 
-{% block title %}My Bookings - HomeHaven{% endblock %}
+{% block title %}My Bookings - CampusRooms{% endblock %}
 
 {% block content %}
-<div class="animate-fade-in">
-  <div class="mb-10">
-    <h1 class="text-4xl font-extrabold text-[#003366] mb-2 uppercase italic tracking-tight">Booking History</h1>
-    <p class="text-gray-500 font-medium">Track your room reservation status and payment details.</p>
+<div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-12 animate-fade-in">
+  <div class="mb-12">
+    <h1 class="text-4xl font-black text-white mb-2 uppercase italic tracking-tight">Booking <span
+        class="text-[#FFCC00]">History</span></h1>
+    <p class="text-gray-400 font-medium">Track your room reservation lifecycle and verification status.</p>
   </div>
 
   {% if bookings %}
-  <div class="glass-card rounded-2xl overflow-hidden bg-white shadow-2xl border-b-8 border-[#003366]">
+  <div class="glass-card rounded-[2rem] overflow-hidden bg-[#1e293b]/30 border-white/5 shadow-2xl">
     <div class="overflow-x-auto">
       <table class="w-full text-left">
-        <thead class="bg-[#003366] text-white">
-          <tr>
-            <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest">Property Details</th>
-            <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest">Check-in</th>
-            <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest">M-Pesa Code</th>
-            <th class="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-center">Status</th>
+        <thead>
+          <tr class="bg-black/20 border-b border-white/5">
+            <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Asset Details</th>
+            <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Check-in Identifier
+            </th>
+            <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest">Reference Code</th>
+            <th class="px-8 py-5 text-[10px] font-black text-gray-500 uppercase tracking-widest text-center">Lifecycle
+              Status</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-50">
+        <tbody class="divide-y divide-white/5">
           {% for booking in bookings %}
-          <tr class="hover:bg-[#f0f4f8]/50 transition duration-200">
+          <tr class="hover:bg-white/5 transition duration-300 group">
             <td class="px-8 py-6">
-              <div class="font-extrabold text-[#003366] text-sm">{{ booking[3] }}</div>
-              <div class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{{ booking[5] }} Months Stay
-              </div>
+              <div class="font-black text-white text-sm group-hover:text-[#FFCC00] transition-colors tracking-tight">{{
+                booking[3] }}</div>
+              <div class="text-[9px] text-gray-500 font-black uppercase tracking-[0.2em] mt-1">{{ booking[5] }} Months
+                Subscription</div>
             </td>
-            <td class="px-8 py-6 text-gray-600 text-xs font-bold">{{ booking[4] }}</td>
+            <td class="px-8 py-6 text-gray-400 text-xs font-black uppercase tracking-tighter">{{ booking[4] }}</td>
             <td class="px-8 py-6">
               <span
-                class="bg-[#f0f4f8] border border-[#003366]/20 px-3 py-1 rounded text-xs font-mono font-bold text-[#003366]">
-                {{ booking[8] if booking[8] else 'PENDING VERIFICATION' }}
+                class="bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg text-[10px] font-mono font-black text-white/70 uppercase">
+                {{ booking[8] if booking[8] else 'Awaiting Input' }}
               </span>
             </td>
             <td class="px-8 py-6 text-center">
-              <span
-                class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest
-                                {% if booking[9] == 'Confirmed' %}badge-vacant{% else %}badge-booked{% endif %} shadow-sm">
-                <i
-                  class="fas {% if booking[9] == 'Confirmed' %}fa-check-double{% else %}fa-hourglass-half{% endif %}"></i>
-                {{ booking[9] if booking[9] else 'Pending' }}
+              <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-inner
+                                {% if booking[9] == 'Confirmed' %}badge-vacant{% else %}badge-booked{% endif %}">
+                <i class="fas {% if booking[9] == 'Confirmed' %}fa-check-circle{% else %}fa-clock{% endif %}"></i>
+                {{ booking[9] if booking[9] else 'Processing' }}
               </span>
             </td>
           </tr>
@@ -52,17 +54,26 @@
     </div>
   </div>
   {% else %}
-  <div class="glass-card p-20 rounded-3xl text-center bg-white shadow-lg border-2 border-dashed border-gray-200">
-    <i class="fas fa-receipt text-6xl text-gray-100 mb-6"></i>
-    <h3 class="text-xl font-bold text-[#003366] opacity-40 uppercase mb-8 italic">No housing applications found</h3>
-    <a href="/house" class="btn-primary shadow-xl">EXPLORE ROOMS NOW</a>
+  <div
+    class="glass-card p-24 rounded-[3rem] text-center bg-[#1e293b]/20 border-white/5 border-2 border-dashed shadow-2xl group">
+    <div
+      class="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform">
+      <i class="fas fa-folder-open text-4xl text-gray-600"></i>
+    </div>
+    <h3 class="text-xl font-black text-white/40 uppercase mb-8 italic tracking-widest">No active property logs detected
+    </h3>
+    <a href="/house" class="btn-primary py-4 px-10 text-[10px] shadow-2xl">EXPLORE INVENTORY</a>
   </div>
   {% endif %}
 
-  <div class="mt-12 p-6 bg-[#f0f4f8] rounded-xl flex items-center gap-4 border border-[#003366]/10">
-    <i class="fas fa-info-circle text-[#003366] text-xl"></i>
-    <p class="text-xs text-gray-500 italic">Bookings are marked as <strong>Confirmed</strong> only after M-Pesa
-      transaction verification by the LupahTech administration team.</p>
+  <div class="mt-12 p-8 bg-white/5 rounded-3xl flex items-center gap-6 border border-white/5 backdrop-blur-md">
+    <div
+      class="w-12 h-12 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center text-[#FFCC00] border border-[#FFCC00]/20">
+      <i class="fas fa-shield-alt text-xl"></i>
+    </div>
+    <p class="text-xs text-gray-400 leading-relaxed font-medium">Reservations are authenticated as <strong
+        class="text-white">Confirmed</strong> only after M-Pesa reference validation by the LupahTech core systems
+      security team. Usually within 2-4 business hours.</p>
   </div>
 </div>
 {% endblock %}

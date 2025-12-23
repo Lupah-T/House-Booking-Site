@@ -1,84 +1,98 @@
 {% extends "layout.html" %}
 
-{% block title %}HomeHaven - MUT Student Housing Portal{% endblock %}
+{% block title %}CampusRooms - Premium MUT Student Housing{% endblock %}
 
 {% block content %}
-<div class="animate-fade-in">
+<div class="animate-fade-in px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
   <!-- Hero Section -->
-  <div class="relative rounded-3xl overflow-hidden bg-[#003366] min-h-[500px] flex items-center mb-20 shadow-2xl">
+  <div
+    class="relative rounded-[2rem] overflow-hidden bg-[#001f3f] min-h-[550px] flex items-center mb-20 shadow-2xl border border-[#FFCC00]/10">
     <div
-      class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1555854817-5b2260d1bd63?auto=format&fit=crop&q=80')] bg-cover bg-center">
+      class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1555854817-5b2260d1bd63?auto=format&fit=crop&q=80')] bg-cover bg-center">
     </div>
-    <div class="relative z-10 px-8 md:px-20 max-w-3xl">
-      <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-        Secure Your <span class="text-[#FFCC00]">Dream Study Space</span> Near MUT
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#0f172a]/80 to-transparent"></div>
+
+    <div class="relative z-10 px-8 md:px-16 max-w-3xl">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 bg-[#FFCC00]/10 border border-[#FFCC00]/20 rounded-full mb-6">
+        <span class="w-2 h-2 bg-[#FFCC00] rounded-full animate-pulse"></span>
+        <span class="text-[#FFCC00] text-[10px] font-black uppercase tracking-widest">Official MUT Partner</span>
+      </div>
+      <h1 class="text-4xl md:text-7xl font-black text-white mb-6 leading-tight">
+        Secure Your <span class="text-primary-gradient">Next Home</span> Away From Home.
       </h1>
-      <p class="text-xl text-gray-200 mb-10 leading-relaxed font-medium">
-        The most trusted housing portal for Murang'a University of Technology students. Verified listings, secure
-        payments, and premium locations.
+      <p class="text-lg text-gray-400 mb-10 leading-relaxed max-w-xl">
+        The ultimate student housing portal for Murang'a University Students. Verified listings, effortless booking, and
+        premium spaces.
       </p>
       <div class="flex flex-wrap gap-4">
-        <a href="/house"
-          class="bg-[#FFCC00] text-[#003366] px-10 py-4 rounded-xl text-lg font-black hover:bg-white transition shadow-lg">VIEW
-          AVAILABLE ROOMS</a>
+        <a href="/house" class="btn-primary py-4 px-10 text-sm">Find Your Room</a>
         <a href="/student-login"
-          class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-white hover:text-[#003366] transition">LOGIN
-          TO PORTAL</a>
+          class="bg-white/5 border border-white/10 text-white px-10 py-4 rounded-xl text-sm font-bold hover:bg-white/10 transition backdrop-blur-md">Student
+          Portal</a>
       </div>
     </div>
   </div>
 
   <!-- Stats Section -->
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
-    <div class="glass-card p-8 bg-white text-center border-b-4 border-[#003366]">
-      <div class="text-4xl font-black text-[#003366] mb-2">500+</div>
-      <div class="text-gray-500 font-bold uppercase text-xs tracking-widest">Active Listings</div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-20">
+    <div class="glass-card p-8 text-center bg-[#1e293b]/50">
+      <div class="text-4xl font-black text-[#FFCC00] mb-2">500+</div>
+      <div class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">Active Units</div>
     </div>
-    <div class="glass-card p-8 bg-white text-center border-b-4 border-[#FFCC00]">
-      <div class="text-4xl font-black text-[#003366] mb-2">12+</div>
-      <div class="text-gray-500 font-bold uppercase text-xs tracking-widest">Premium Areas</div>
+    <div class="glass-card p-8 text-center bg-[#1e293b]/50">
+      <div class="text-4xl font-black text-[#FFCC00] mb-2">10+</div>
+      <div class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">Prime Areas</div>
     </div>
-    <div class="glass-card p-8 bg-white text-center border-b-4 border-[#003366]">
-      <div class="text-4xl font-black text-[#003366] mb-2">100%</div>
-      <div class="text-gray-500 font-bold uppercase text-xs tracking-widest">Verified Landlords</div>
+    <div class="glass-card p-8 text-center bg-[#1e293b]/50">
+      <div class="text-4xl font-black text-[#FFCC00] mb-2">100%</div>
+      <div class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">Verified Ads</div>
     </div>
-    <div class="glass-card p-8 bg-white text-center border-b-4 border-[#FFCC00]">
-      <div class="text-4xl font-black text-[#003366] mb-2">FAST</div>
-      <div class="text-gray-500 font-bold uppercase text-xs tracking-widest">Booking Process</div>
+    <div class="glass-card p-8 text-center bg-[#1e293b]/50">
+      <div class="text-4xl font-black text-[#FFCC00] mb-2">FREE</div>
+      <div class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">Support Access</div>
     </div>
   </div>
 
-  <!-- Feature Section -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-    <div>
-      <h2 class="text-3xl font-black text-[#003366] mb-6 uppercase">Why Choose HomeHaven?</h2>
-      <div class="space-y-6">
-        <div class="flex gap-4">
+  <!-- Why Choose Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+    <div class="order-2 lg:order-1">
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-8 uppercase italic">Why <span
+          class="text-[#FFCC00]">CampusRooms</span>?</h2>
+      <div class="space-y-8">
+        <div class="flex gap-6 items-start">
           <div
-            class="w-12 h-12 rounded-full bg-[#f0f4f8] flex-shrink-0 flex items-center justify-center text-[#003366] text-xl border border-[#003366]">
-            <i class="fas fa-check"></i>
+            class="w-14 h-14 rounded-2xl bg-[#FFCC00]/10 border border-[#FFCC00]/20 flex-shrink-0 flex items-center justify-center text-[#FFCC00] text-2xl shadow-xl">
+            <i class="fas fa-search-location"></i>
           </div>
           <div>
-            <h4 class="font-bold text-[#003366] mb-1">Official Student Partner</h4>
-            <p class="text-sm text-gray-600">Tailored specifically for MUT students' needs and budget constraints.</p>
+            <h4 class="font-black text-white mb-2 uppercase tracking-wide">Wide Selection</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">From Mukuyu to VM, we cover every prime area surrounding
+              the campus.</p>
           </div>
         </div>
-        <div class="flex gap-4">
+        <div class="flex gap-6 items-start">
           <div
-            class="w-12 h-12 rounded-full bg-[#f0f4f8] flex-shrink-0 flex items-center justify-center text-[#003366] text-xl border border-[#003366]">
-            <i class="fas fa-shield-alt"></i>
+            class="w-14 h-14 rounded-2xl bg-[#FFCC00]/10 border border-[#FFCC00]/20 flex-shrink-0 flex items-center justify-center text-[#FFCC00] text-2xl shadow-xl">
+            <i class="fas fa-check-shield"></i>
           </div>
           <div>
-            <h4 class="font-bold text-[#003366] mb-1">Secure Transactions</h4>
-            <p class="text-sm text-gray-600">All bookings are tracked with M-Pesa verification codes for transparency.
-            </p>
+            <h4 class="font-black text-white mb-2 uppercase tracking-wide">Trust & Verification</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">We only list properties from landlords who meet our high
+              standards of service.</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="rounded-3xl overflow-hidden shadow-xl">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80"
-        alt="Student Life" class="w-full h-full object-cover">
+    <div class="order-1 lg:order-2 relative group">
+      <div
+        class="absolute -inset-4 bg-gradient-to-tr from-[#FFCC00] to-blue-600 rounded-[2.5rem] opacity-20 blur-2xl group-hover:opacity-40 transition-opacity">
+      </div>
+      <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80"
+          alt="Student Life"
+          class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700">
+      </div>
     </div>
   </div>
 </div>

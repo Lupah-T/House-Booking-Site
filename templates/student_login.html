@@ -1,40 +1,53 @@
 {% extends "layout.html" %}
 
-{% block title %}Student Login - HomeHaven{% endblock %}
+{% block title %}Student Login - CampusRooms{% endblock %}
 
 {% block content %}
-<div class="max-w-md mx-auto py-12 md:py-20 animate-fade-in">
-  <div class="text-center mb-10">
-    <h1 class="text-4xl font-bold mb-4">Student Login</h1>
-    <p class="text-gray-500">Welcome back! Please enter your details.</p>
+<div class="max-w-md mx-auto py-12 md:py-24 animate-fade-in px-4">
+  <div class="text-center mb-12">
+    <div
+      class="inline-flex items-center justify-center w-16 h-16 bg-[#FFCC00]/10 rounded-2xl mb-6 shadow-xl border border-[#FFCC00]/20">
+      <i class="fas fa-user-graduate text-[#FFCC00] text-3xl"></i>
+    </div>
+    <h1 class="text-4xl font-black text-white mb-2 uppercase tracking-tight">Student <span
+        class="text-[#FFCC00]">Login</span></h1>
+    <p class="text-gray-400 text-sm font-medium">Access your campus housing dashboard.</p>
   </div>
 
-  <div class="glass-card p-8 rounded-3xl">
-    <form method="POST" action="/student-login" class="space-y-6">
-      <div class="space-y-2">
-        <label class="text-sm font-semibold text-gray-700 ml-1">Email Address</label>
-        <div class="relative">
-          <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          <input type="email" name="email" required placeholder="your.name@email.com" class="input-field pl-12" />
+  <div
+    class="glass-card p-10 rounded-[2rem] bg-[#1e293b]/60 backdrop-blur-2xl border border-white/5 shadow-2xl relative overflow-hidden">
+    <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-[#FFCC00]/5 rounded-full blur-3xl"></div>
+    <form method="POST" action="/student-login" class="space-y-8 relative z-10">
+      <div class="space-y-3">
+        <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Email
+          Address</label>
+        <div class="relative group">
+          <i
+            class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#FFCC00] transition-colors"></i>
+          <input type="email" name="email" required placeholder="name@campus.com" class="input-field pl-12" />
         </div>
       </div>
 
-      <div class="space-y-2">
-        <label class="text-sm font-semibold text-gray-700 ml-1">Password</label>
-        <div class="relative">
-          <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      <div class="space-y-3">
+        <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Password</label>
+        <div class="relative group">
+          <i
+            class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#FFCC00] transition-colors"></i>
           <input type="password" name="password" required placeholder="••••••••" class="input-field pl-12" />
         </div>
       </div>
 
-      <button type="submit" class="w-full btn-primary py-4 rounded-2xl text-lg font-bold">
-        Login to Dashboard
+      <button type="submit"
+        class="w-full btn-primary py-4 rounded-xl text-xs font-black shadow-xl hover:shadow-[#FFCC00]/10">
+        Enter Dashboard
       </button>
     </form>
 
-    <div class="mt-8 pt-8 border-t border-gray-100 text-center">
-      <p class="text-gray-600">Don't have an account? <a href="/student-signup"
-          class="text-purple-600 font-bold hover:underline">Sign up here</a></p>
+    <div class="mt-10 pt-10 border-t border-white/5 text-center">
+      <p class="text-gray-500 text-xs font-bold uppercase tracking-wide">
+        New here? <a href="/student-signup" class="text-[#FFCC00] hover:underline underline-offset-4 ml-1">Create
+          Student Account</a>
+      </p>
     </div>
   </div>
 </div>

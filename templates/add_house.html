@@ -1,32 +1,42 @@
 {% extends "layout.html" %}
 
-{% block title %}Post Property - HomeHaven{% endblock %}
+{% block title %}Post Property - CampusRooms{% endblock %}
 
 {% block content %}
-<div class="max-w-3xl mx-auto py-10 animate-fade-in">
-  <div class="text-center mb-10">
-    <h1 class="text-4xl font-extrabold text-[#003366] mb-4 uppercase italic">List New Property</h1>
-    <p class="text-gray-500 font-medium">Add a verified student residence to the portal.</p>
+<div class="max-w-3xl mx-auto py-12 md:py-24 animate-fade-in px-4">
+  <div class="text-center mb-12">
+    <div
+      class="inline-flex items-center justify-center w-16 h-16 bg-[#FFCC00]/10 rounded-2xl mb-6 shadow-xl border border-[#FFCC00]/20">
+      <i class="fas fa-plus text-[#FFCC00] text-3xl"></i>
+    </div>
+    <h1 class="text-4xl font-black text-white mb-2 uppercase italic tracking-tight">List New <span
+        class="text-[#FFCC00]">Property</span></h1>
+    <p class="text-gray-400 font-medium">Add a verified student residence to the portal.</p>
   </div>
 
-  <div class="glass-card p-10 rounded-3xl bg-white shadow-2xl border-t-8 border-[#FFCC00]">
-    <form action="/add-house" method="POST" enctype="multipart/form-data" class="space-y-6">
-      <div class="space-y-2">
-        <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Property Name</label>
+  <div
+    class="glass-card p-10 rounded-[2.5rem] bg-[#1e293b]/60 backdrop-blur-2xl border border-white/5 shadow-2xl relative overflow-hidden">
+    <div class="absolute -top-12 -right-12 w-48 h-48 bg-[#FFCC00]/5 rounded-full blur-3xl"></div>
+    <form action="/add-house" method="POST" enctype="multipart/form-data" class="space-y-8 relative z-10">
+      <div class="space-y-3">
+        <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Legal Property
+          Name</label>
         <input type="text" name="name" placeholder="E.g. Sunrise Heights" required class="input-field">
       </div>
 
-      <div class="space-y-2">
-        <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Description</label>
-        <textarea name="description" placeholder="Describe the room, amenities, water, security etc." required
-          class="input-field h-32" style="resize: none;"></textarea>
+      <div class="space-y-3">
+        <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Comprehensive
+          Description</label>
+        <textarea name="description" placeholder="Describe amenities, water source, security protocols..." required
+          class="input-field h-40" style="resize: none;"></textarea>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="space-y-2">
-          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Campus Area</label>
-          <select name="location" required class="input-field">
-            <option value="" disabled selected>Select Area</option>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Regional
+            Area</label>
+          <select name="location" required class="input-field appearance-none">
+            <option value="" disabled selected>Select Territory</option>
             <option value="Mukuyu">Mukuyu</option>
             <option value="Town">Town</option>
             <option value="Tities">Tities</option>
@@ -41,10 +51,11 @@
           </select>
         </div>
 
-        <div class="space-y-2">
-          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">House Type</label>
-          <select name="house_type" required class="input-field">
-            <option value="" disabled selected>Select Type</option>
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Unit
+            Configuration</label>
+          <select name="house_type" required class="input-field appearance-none">
+            <option value="" disabled selected>Select Specification</option>
             <option value="Bedsitter">Bedsitter</option>
             <option value="Single Room">Single Room</option>
             <option value="Double Room">Double Room</option>
@@ -54,35 +65,46 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="space-y-2">
-          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Monthly Rent (Ksh)</label>
-          <input type="text" name="price" placeholder="E.g. 5000" required class="input-field">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Monthly Rate
+            (KSh)</label>
+          <input type="text" name="price" placeholder="E.g. 5500" required class="input-field">
         </div>
 
-        <div class="space-y-2">
-          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Contact Info</label>
-          <input type="text" name="contact" placeholder="E.g. 0712345678" required class="input-field">
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Management
+            Contact</label>
+          <input type="text" name="contact" placeholder="07XX XXX XXX" required class="input-field">
         </div>
       </div>
 
-      <div class="space-y-2">
-        <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Property Image</label>
+      <div class="space-y-3">
+        <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Asset
+          Visuals</label>
         <div
-          class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-[#e2e8f0] border-dashed rounded-xl bg-gray-50 hover:bg-gray-100 transition cursor-pointer relative">
-          <div class="space-y-1 text-center">
-            <i class="fas fa-camera text-4xl text-[#003366] opacity-30 mb-2"></i>
-            <div class="flex text-sm text-gray-600">
-              <span class="font-bold text-[#003366]">Click to upload house photo</span>
+          class="mt-2 flex justify-center px-8 pt-10 pb-10 border-2 border-white/5 border-dashed rounded-[2rem] bg-black/20 hover:bg-white/5 transition duration-500 cursor-pointer relative group overflow-hidden">
+          <div class="space-y-4 text-center relative z-10 transition group-hover:scale-105">
+            <div
+              class="w-16 h-16 bg-[#FFCC00]/10 rounded-2xl flex items-center justify-center mx-auto mb-2 text-[#FFCC00] shadow-xl border border-[#FFCC00]/20">
+              <i class="fas fa-camera-retro text-2xl"></i>
             </div>
-            <p class="text-xs text-gray-400">Professional photos attract more bookings</p>
+            <div class="text-sm text-gray-400">
+              <span
+                class="font-black text-white group-hover:text-[#FFCC00] transition-colors uppercase tracking-widest">Select
+                Image Asset</span>
+            </div>
+            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">High-resolution images increase
+              performance</p>
           </div>
-          <input type="file" name="image" accept="image/*" required class="absolute inset-0 opacity-0 cursor-pointer">
+          <input type="file" name="image" accept="image/*" required
+            class="absolute inset-0 opacity-0 cursor-pointer z-20">
         </div>
       </div>
 
-      <button type="submit" class="w-full btn-primary py-4 rounded shadow-lg">
-        PUBLISH PROPERTY LISTING
+      <button type="submit"
+        class="w-full btn-primary py-5 rounded-2xl text-xs font-black shadow-2xl uppercase tracking-[0.2em] mt-4">
+        Deploy Listing to Portal
       </button>
     </form>
   </div>

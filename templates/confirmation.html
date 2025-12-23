@@ -1,31 +1,36 @@
 {% extends "layout.html" %}
 
-{% block title %}Booking Confirmed - HomeHaven{% endblock %}
+{% block title %}Booking Confirmed - CampusRooms{% endblock %}
 
 {% block content %}
-<div class="max-w-xl mx-auto py-20 text-center animate-fade-in">
+<div class="max-w-xl mx-auto py-24 text-center animate-fade-in px-4">
   <div
-    class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-8 shadow-inner">
-    <i class="fas fa-check"></i>
+    class="inline-flex items-center justify-center w-24 h-24 bg-[#10b981]/10 text-[#10b981] rounded-[2rem] text-5xl mb-10 shadow-2xl border border-[#10b981]/20 group hover:rotate-6 transition-transform">
+    <i class="fas fa-check-circle"></i>
   </div>
 
-  <h1 class="text-4xl font-bold mb-4">You're All Set!</h1>
-  <p class="text-xl text-gray-500 mb-10">
-    Congratulations <span class="text-purple-600 font-bold">{{ name }}</span>,<br>
-    your room booking has been successfully confirmed.
+  <h1 class="text-5xl font-black text-white mb-4 uppercase italic tracking-tighter">You're All Set!</h1>
+  <p class="text-lg text-gray-400 mb-12 max-w-sm mx-auto leading-relaxed">
+    Congratulations <span class="text-[#FFCC00] font-black">{{ name }}</span>,<br>
+    your housing application has been successfully transmitted.
   </p>
 
-  <div class="glass-card p-8 rounded-3xl mb-10 border-2 border-green-50">
-    <p class="text-gray-600 mb-6">A confirmation email has been sent to your inbox. Please check your spam folder if you
-      don't see it.</p>
-    <div class="flex flex-col md:flex-row gap-4 justify-center">
-      <a href="/student-dashboard" class="btn-primary">Go to Dashboard</a>
-      <a href="/" class="bg-gray-100 text-gray-700 px-8 py-3 rounded-xl font-bold hover:bg-gray-200 transition">Back to
-        Home</a>
+  <div
+    class="glass-card p-10 rounded-[2.5rem] bg-[#1e293b]/50 border-white/5 mb-12 shadow-2xl relative overflow-hidden">
+    <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-[#FFCC00]/5 rounded-full blur-3xl"></div>
+    <p class="text-gray-400 text-sm mb-10 leading-relaxed font-medium relative z-10">A confirmation payload has been
+      sent to your registered email. Check your dashboard for real-time status updates.</p>
+    <div class="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
+      <a href="/student-dashboard" class="btn-primary py-4 px-10 text-xs shadow-xl">Portal Dashboard</a>
+      <a href="/"
+        class="bg-white/5 border border-white/10 text-white px-10 py-4 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-white/10 transition backdrop-blur-md">Secure
+        Exit</a>
     </div>
   </div>
 
-  <p class="text-sm text-gray-400">Need help? <a href="/contact" class="text-purple-600 hover:underline">Contact our
-      support team</a></p>
+  <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest">
+    Operational Support: <a href="/contact" class="text-[#FFCC00] hover:underline underline-offset-4 ml-1">LupahTech
+      Helpdesk</a>
+  </p>
 </div>
 {% endblock %}

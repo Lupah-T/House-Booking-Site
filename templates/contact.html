@@ -1,73 +1,102 @@
 {% extends "layout.html" %}
 
-{% block title %}Contact Us - HomeHaven{% endblock %}
+{% block title %}Contact Us - CampusRooms{% endblock %}
 
 {% block content %}
-<div class="max-w-5xl mx-auto py-12 animate-fade-in">
-  <div class="text-center mb-16">
-    <h1 class="text-5xl font-bold mb-6">Get in Touch</h1>
-    <p class="text-xl text-gray-500">Have questions? We're here to help you find your perfect stay.</p>
+<div class="max-w-6xl mx-auto py-12 md:py-24 animate-fade-in px-4">
+  <div class="text-center mb-20">
+    <div
+      class="inline-flex items-center justify-center w-20 h-20 bg-[#FFCC00]/10 rounded-3xl mb-8 shadow-2xl border border-[#FFCC00]/20">
+      <i class="fas fa-headset text-[#FFCC00] text-4xl"></i>
+    </div>
+    <h1 class="text-5xl md:text-6xl font-black text-white mb-6 uppercase italic tracking-tighter">Get in <span
+        class="text-[#FFCC00]">Touch</span></h1>
+    <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">Have questions? We're here to help you find your
+      perfect stay near MUT.</p>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
     <!-- Contact Info -->
-    <div class="space-y-8">
-      <div class="glass-card p-8 rounded-3xl">
-        <div class="flex items-start gap-6">
+    <div class="lg:col-span-2 space-y-8">
+      <div class="glass-card p-10 rounded-[2rem] bg-[#1e293b]/50 border-white/5 relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity">
+          <i class="fas fa-map-marker-alt text-9xl text-white"></i>
+        </div>
+        <div class="flex items-start gap-8 relative z-10">
           <div
-            class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-map-marker-alt text-xl"></i>
+            class="w-14 h-14 bg-[#FFCC00]/10 text-[#FFCC00] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl border border-[#FFCC00]/20">
+            <i class="fas fa-map-marked-alt text-2xl"></i>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-2">Our Office</h3>
-            <p class="text-gray-500 leading-relaxed">123 University Way,<br>Murang'a Town, Kenya</p>
+            <h3 class="text-xs font-black text-[#FFCC00] uppercase tracking-widest mb-3 italic">Our Physical Office</h3>
+            <p class="text-white text-lg font-black leading-tight">123 University Way,<br>Murang'a Town, Kenya</p>
           </div>
         </div>
       </div>
 
-      <div class="glass-card p-8 rounded-3xl">
-        <div class="flex items-start gap-6">
-          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-phone-alt text-xl"></i>
+      <div class="glass-card p-10 rounded-[2rem] bg-[#1e293b]/50 border-white/5 relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity">
+          <i class="fas fa-phone-alt text-9xl text-white"></i>
+        </div>
+        <div class="flex items-start gap-8 relative z-10">
+          <div
+            class="w-14 h-14 bg-[#FFCC00]/10 text-[#FFCC00] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl border border-[#FFCC00]/20">
+            <i class="fas fa-phone-volume text-2xl"></i>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-2">Phone Support</h3>
-            <p class="text-gray-500">+254 712 345 678<br>Mon - Fri, 8am - 6pm</p>
+            <h3 class="text-xs font-black text-[#FFCC00] uppercase tracking-widest mb-3 italic">Live Support</h3>
+            <p class="text-white text-lg font-black leading-tight">+254 712 345 678<br><span
+                class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Mon - Fri, 8am - 6pm</span></p>
           </div>
         </div>
       </div>
 
-      <div class="glass-card p-8 rounded-3xl">
-        <div class="flex items-start gap-6">
-          <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
-            <i class="fas fa-envelope text-xl"></i>
+      <div class="glass-card p-10 rounded-[2rem] bg-[#1e293b]/50 border-white/5 relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.1] transition-opacity">
+          <i class="fas fa-envelope text-9xl text-white"></i>
+        </div>
+        <div class="flex items-start gap-8 relative z-10">
+          <div
+            class="w-14 h-14 bg-[#FFCC00]/10 text-[#FFCC00] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-xl border border-[#FFCC00]/20">
+            <i class="fas fa-envelope-open-text text-2xl"></i>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-2">Email Us</h3>
-            <p class="text-gray-500">support@homehaven.com<br>info@homehaven.com</p>
+            <h3 class="text-xs font-black text-[#FFCC00] uppercase tracking-widest mb-3 italic">Electronic Mail</h3>
+            <p class="text-white text-lg font-black leading-tight">support@campusrooms.com<br><span
+                class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">24/7 Response Rate</span></p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Contact Form -->
-    <div class="glass-card p-10 rounded-3xl">
-      <h2 class="text-2xl font-bold mb-8">Send us a Message</h2>
-      <form action="#" class="space-y-6">
-        <div class="space-y-2">
-          <label class="text-sm font-semibold text-gray-700">Name</label>
-          <input type="text" placeholder="John Doe" class="input-field">
+    <div
+      class="lg:col-span-3 glass-card p-12 rounded-[2.5rem] bg-[#1e293b]/60 border-white/5 relative overflow-hidden shadow-2xl">
+      <div class="absolute -top-12 -right-12 w-48 h-48 bg-[#FFCC00]/5 rounded-full blur-3xl"></div>
+      <h2 class="text-2xl font-black text-white mb-10 uppercase italic tracking-wider relative z-10">Direct Message
+        Inquiry</h2>
+      <form action="#" class="space-y-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="space-y-3">
+            <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Your
+              Name</label>
+            <input type="text" placeholder="John Doe" class="input-field">
+          </div>
+          <div class="space-y-3">
+            <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Email
+              Identifier</label>
+            <input type="email" placeholder="john@domain.com" class="input-field">
+          </div>
         </div>
-        <div class="space-y-2">
-          <label class="text-sm font-semibold text-gray-700">Email</label>
-          <input type="email" placeholder="john@example.com" class="input-field">
+        <div class="space-y-3">
+          <label class="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest ml-1 opacity-80">Support
+            Description</label>
+          <textarea placeholder="How can our agents help you today?" class="input-field h-40"
+            style="resize: none;"></textarea>
         </div>
-        <div class="space-y-2">
-          <label class="text-sm font-semibold text-gray-700">Message</label>
-          <textarea placeholder="How can we help you?" class="input-field h-32" style="resize: none;"></textarea>
-        </div>
-        <button type="button" class="w-full btn-primary py-4 rounded-2xl font-bold">
-          Send Message
+        <button type="button"
+          class="w-full btn-primary py-5 rounded-2xl text-xs font-black shadow-2xl uppercase tracking-[0.2em]">
+          Transmit Message
         </button>
       </form>
     </div>
