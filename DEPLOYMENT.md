@@ -14,19 +14,19 @@ Render is ideal for persistent Flask applications.
 1.  **New Web Service**:
     - Log in to Render and click **New > Web Service**.
     - Connect your GitHub repository: `Lupah-T/House-Booking-Site`.
-2.  **Configuration**:
+2. **Configuration**:
     - **Name**: `house-booking-site`
     - **Environment**: `Python 3`
     - **Region**: Choose the one closest to you.
     - **Branch**: `main`
     - **Build Command**: `pip install -r requirements.txt`
     - **Start Command**: `gunicorn app:app`
-3.  **Environment Variables**:
+3. **Environment Variables**:
     - Click **Advanced > Add Environment Variable**.
     - `FLASK_SECRET_KEY`: (Your secret key)
     - `SENDER_EMAIL`: (Your SMTP email)
     - `SENDER_PASSWORD`: (Your SMTP password/app password)
-    - `PORT`: `3000` (Render will override this, but the app handles it).
+    - **Port Configuration**: Removed the hardcoded port 3000 requirement to allow host platforms (Render/Vercel) to manage the port dynamically.
 4.  **Deploy**: Click **Create Web Service**.
 
 ---
