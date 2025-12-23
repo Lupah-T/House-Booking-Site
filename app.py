@@ -97,7 +97,7 @@ def init_db():
             username TEXT UNIQUE,
             password TEXT
         )''')
-        # Fix missing email column in existing admins table
+        # Fix missing columns in existing admins table
         cur.execute("PRAGMA table_info(admins)")
         cols = [col[1] for col in cur.fetchall()]
         if 'email' not in cols:
@@ -105,6 +105,11 @@ def init_db():
                 cur.execute("ALTER TABLE admins ADD COLUMN email TEXT")
             except Exception as e:
                 print(f"Skipping admin email add: {e}")
+        if 'username' not in cols:
+            try:
+                cur.execute("ALTER TABLE admins ADD COLUMN username TEXT")
+            except Exception as e:
+                print(f"Skipping admin username add: {e}")
 
         # Landlords Table
         cur.execute('''CREATE TABLE IF NOT EXISTS landlords (
@@ -113,7 +118,7 @@ def init_db():
             username TEXT UNIQUE,
             password TEXT
         )''')
-        # Fix missing email column in existing landlords table
+        # Fix missing columns in existing landlords table
         cur.execute("PRAGMA table_info(landlords)")
         cols = [col[1] for col in cur.fetchall()]
         if 'email' not in cols:
@@ -121,6 +126,19 @@ def init_db():
                 cur.execute("ALTER TABLE landlords ADD COLUMN email TEXT")
             except Exception as e:
                 print(f"Skipping landlord email add: {e}")
+        if 'username' not in cols:
+            try:
+                cur.execute("ALTER TABLE landlords ADD COLUMN username TEXT")
+            except Exception as e:
+                print(f"Skipping landlord username add: {e}")
+        # Remove 'name' column if it exists (legacy artifact)
+        if 'name' in cols:
+             try:
+                # SQLite doesn't support DROP COLUMN in older versions easily, but for simplicity we keep it if it's there
+                # and just ensure code doesn't rely on it. Actually, we'll just leave it and focus on 'username' existing.
+                pass
+             except:
+                pass
 
         db.commit()
 
@@ -385,13 +403,26 @@ def landlord_signup():
         password = generate_password_hash(request.form["password"])
         db = get_db()
         cur = db.cursor()
-        cur.execute("SELECT * FROM landlords WHERE email=? OR username=?", (email, username))
-        if cur.fetchone():
-            flash("Landlord with this email or username already exists", "error")
-            return redirect("/admin/dashboard")
-        cur.execute("INSERT INTO landlords (email, username, password) VALUES (?, ?, ?)", (email, username, password))
-        db.commit()
-        flash("Landlord registered successfully", "success")
+        
+        # Robust check for email or username existence
+        try:
+            cur.execute("SELECT id FROM landlords WHERE email=? OR username=?", (email, username))
+            if cur.fetchone():
+                flash("Landlord with this email or username already exists", "error")
+                return redirect("/admin/dashboard")
+            
+            cur.execute("INSERT INTO landlords (email, username, password) VALUES (?, ?, ?)", (email, username, password))
+            db.commit()
+            flash("Landlord registered successfully", "success")
+        except sqlite3.OperationalError as e:
+            print(f"Database error during landlord signup: {e}")
+            flash(f"Database error: {e}", "error")
+            # Attempt to re-init DB if a column is missing
+            init_db()
+            return redirect("/landlord-signup")
+        except Exception as e:
+            flash(f"An error occurred: {e}", "error")
+            
         return redirect("/admin/dashboard")
     return render_template("landlord_signup.html")
 
