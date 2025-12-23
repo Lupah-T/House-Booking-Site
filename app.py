@@ -236,6 +236,10 @@ def confirmation():
     name = request.args.get("name")
     return render_template("confirmation.html", name=name)
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 # ======================== #
 # ADD HOUSE (Admin/Landlord)
 # ======================== #
@@ -324,7 +328,8 @@ def my_bookings():
     if "student" not in session:
         return redirect("/student-login")
 
-    reg_no = session["student"][3]
+    # Fix KeyError: 3 (session['student'] is a dict)
+    reg_no = session["student"].get("reg_no")
     db = get_db()
     cur = db.cursor()
     cur.execute("SELECT * FROM bookings WHERE reg_no = ?", (reg_no,))
@@ -335,25 +340,7 @@ def my_bookings():
 # ======================== #
 # ADMIN AUTH
 # ======================== #
-@app.route("/admin-signup", methods=["GET", "POST"])
-def admin_signup():
-    if request.method == "POST":
-        email = request.form["email"]
-        username = request.form["username"]
-        password = request.form["password"]
-        hashed = generate_password_hash(password)
-
-        db = get_db()
-        cur = db.cursor()
-        cur.execute("SELECT * FROM admins WHERE email = ? OR username = ?", (email, username))
-        if cur.fetchone():
-            flash("Admin with this email or username already exists", "error")
-            return redirect("/admin")
-        cur.execute("INSERT INTO admins (email, username, password) VALUES (?, ?, ?)", (email, username, hashed))
-        db.commit()
-        flash("Admin created. Login now.", "success")
-        return redirect("/admin")
-    return render_template("admin_signup.html")
+# Admin signup is now handled via terminal using manage_admin.py
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
@@ -366,7 +353,7 @@ def admin():
         admin = cur.fetchone()
         if admin and check_password_hash(admin['password'], password):
             session["admin"] = dict(admin)
-            return redirect("/admin/dashboard")
+            return redirect(url_for("admin_dashboard"))
         else:
             flash("Invalid login", "error")
     return render_template("admin_login.html")
