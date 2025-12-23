@@ -1,79 +1,131 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Admin Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 p-6">
-  <div class="flex justify-between items-center mb-6">
-    <h1 class="text-3xl font-bold text-purple-700">Admin Dashboard</h1>
-    <a href="/admin/logout" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Logout</a>
+{% extends "layout.html" %}
+
+{% block title %}Admin Control Center - HomeHaven{% endblock %}
+
+{% block content %}
+<div class="animate-fade-in">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+    <div>
+      <h1 class="text-4xl font-black text-[#003366] mb-2 uppercase italic tracking-tight">Admin Control Center</h1>
+      <p class="text-gray-500 font-medium">LupahTech Integrated Management System</p>
+    </div>
+    <div class="flex gap-4">
+      <a href="/landlord-signup" class="btn-primary shadow-lg border-b-4 border-[#00264d]">ADD NEW LANDLORD</a>
+      <a href="/logout"
+        class="bg-white border-2 border-red-500 text-red-500 px-6 py-2.5 rounded font-bold hover:bg-red-50 transition">LOGOUT</a>
+    </div>
   </div>
 
-  <!-- Bookings Section -->
-  <h2 class="text-xl font-semibold text-gray-700 mb-3">Bookings</h2>
-  <div class="overflow-auto mb-8">
-    <table class="min-w-full bg-white shadow rounded">
-      <thead class="bg-purple-700 text-white">
-        <tr>
-          <th class="px-4 py-2">ID</th>
-          <th class="px-4 py-2">Name</th>
-          <th class="px-4 py-2">Phone</th>
-          <th class="px-4 py-2">House</th>
-          <th class="px-4 py-2">Check-in</th>
-          <th class="px-4 py-2">Duration</th>
-          <th class="px-4 py-2">Paid</th>
-          <th class="px-4 py-2">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for booking in bookings %}
-        <tr class="border-b text-center">
-          <td class="px-4 py-2">{{ booking[0] }}</td>
-          <td class="px-4 py-2">{{ booking[1] }}</td>
-          <td class="px-4 py-2">{{ booking[2] }}</td>
-          <td class="px-4 py-2">{{ booking[3] }}</td>
-          <td class="px-4 py-2">{{ booking[4] }}</td>
-          <td class="px-4 py-2">{{ booking[5] }}</td>
-          <td class="px-4 py-2">{{ "Yes" if booking[6] else "No" }}</td>
-          <td class="px-4 py-2">
-            <a href="/admin/delete-booking/{{ booking[0] }}" class="text-red-600 hover:underline">Delete</a>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <!-- Stats Overview -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <div class="glass-card p-6 bg-white border-l-4 border-[#003366]">
+      <div class="text-xs font-black text-gray-400 uppercase mb-1">Total Bookings</div>
+      <div class="text-3xl font-black text-[#003366]">{{ bookings|length }}</div>
+    </div>
+    <div class="glass-card p-6 bg-white border-l-4 border-[#FFCC00]">
+      <div class="text-xs font-black text-gray-400 uppercase mb-1">Active Houses</div>
+      <div class="text-3xl font-black text-[#003366]">{{ houses|length }}</div>
+    </div>
+    <div class="glass-card p-6 bg-white border-l-4 border-[#10b981]">
+      <div class="text-xs font-black text-gray-400 uppercase mb-1">Revenue Generated</div>
+      <div class="text-3xl font-black text-[#003366]">Ksh {{ (bookings|length * 500) }}</div>
+    </div>
   </div>
 
-  <!-- Houses Section -->
-  <h2 class="text-xl font-semibold text-gray-700 mb-3">Houses</h2>
-  <div class="overflow-auto">
-    <table class="min-w-full bg-white shadow rounded">
-      <thead class="bg-purple-700 text-white">
-        <tr>
-          <th class="px-4 py-2">ID</th>
-          <th class="px-4 py-2">Name</th>
-          <th class="px-4 py-2">Location</th>
-          <th class="px-4 py-2">Image</th>
-          <th class="px-4 py-2">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for house in houses %}
-        <tr class="border-b text-center">
-          <td class="px-4 py-2">{{ house[0] }}</td>
-          <td class="px-4 py-2">{{ house[1] }}</td>
-          <td class="px-4 py-2">{{ house[3] }}</td>
-          <td class="px-4 py-2">
-            <img src="{{ url_for('static', filename='images/' + house[4]) }}" class="h-12 mx-auto" alt="House Image">
-          </td>
-          <td class="px-4 py-2">
-            <a href="/admin/delete-house/{{ house[0] }}" class="text-red-600 hover:underline">Delete</a>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="space-y-12">
+    <!-- Bookings Management -->
+    <div class="glass-card rounded-2xl overflow-hidden shadow-xl bg-white border-b-8 border-[#003366]">
+      <div class="p-6 bg-[#f8fafc] border-b border-gray-100 flex justify-between items-center">
+        <h2 class="text-xl font-black text-[#003366] uppercase italic"><i class="fas fa-receipt mr-3"></i>Recent
+          Bookings</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead class="bg-[#003366] text-white">
+            <tr>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Student Details</th>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Property</th>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">M-Pesa Code</th>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Status</th>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-50">
+            {% for booking in bookings %}
+            <tr class="hover:bg-[#f0f4f8]/50 transition">
+              <td class="px-6 py-4">
+                <div class="font-bold text-gray-900 text-sm">{{ booking[1] }}</div>
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">{{ booking[2] }}</div>
+              </td>
+              <td class="px-6 py-4 text-xs text-[#003366] font-black italic">{{ booking[3] }}</td>
+              <td class="px-6 py-4">
+                <span
+                  class="bg-[#f0f4f8] border border-[#003366]/20 px-2 py-1 rounded text-xs font-mono font-bold text-[#003366]">
+                  {{ booking[8] if booking[8] else 'N/A' }}
+                </span>
+              </td>
+              <td class="px-6 py-4">
+                <span class="text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest 
+                                    {% if booking[9] == 'Confirmed' %}badge-vacant{% else %}badge-booked{% endif %}">
+                  {{ booking[9] if booking[9] else 'Pending' }}
+                </span>
+              </td>
+              <td class="px-6 py-4">
+                <a href="/admin/delete-booking/{{ booking[0] }}" class="text-red-500 hover:text-red-700 transition"
+                  onclick="return confirm('Archive this transaction?')">
+                  <i class="fas fa-trash-alt"></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Houses Management -->
+    <div class="glass-card rounded-2xl overflow-hidden shadow-xl bg-white border-b-8 border-[#FFCC00]">
+      <div class="p-6 bg-[#f8fafc] border-b border-gray-100 flex justify-between items-center">
+        <h2 class="text-xl font-black text-[#003366] uppercase italic"><i
+            class="fas fa-home mr-3 text-[#FFCC00]"></i>Property Listings</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead class="bg-[#00264d] text-white">
+            <tr>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Property Name</th>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Price/Month</th>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Status</th>
+              <th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-50">
+            {% for house in houses %}
+            <tr class="hover:bg-[#f0f4f8]/50 transition">
+              <td class="px-6 py-4">
+                <div class="font-bold text-gray-900 text-sm">{{ house[1] }}</div>
+                <div class="text-[10px] font-bold text-gray-400 uppercase">{{ house[3] }}</div>
+              </td>
+              <td class="px-6 py-4 text-sm font-black text-[#003366]">Ksh {{ house[4] }}</td>
+              <td class="px-6 py-4">
+                <span
+                  class="text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest 
+                                    {% if house.availability == 'Vacant' %}badge-vacant{% else %}badge-booked{% endif %}">
+                  {{ house.availability }}
+                </span>
+              </td>
+              <td class="px-6 py-4">
+                <a href="/admin/delete-house/{{ house[0] }}" class="text-red-500 hover:text-red-700 transition"
+                  onclick="return confirm('Remove this listing permamently?')">
+                  <i class="fas fa-trash-alt"></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</body>
-</html>
+</div>
+{% endblock %}

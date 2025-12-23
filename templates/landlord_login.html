@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}Landlord Login - HomeHaven{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto py-12 md:py-20 animate-fade-in">
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold mb-4">Landlord Login</h1>
+        <p class="text-gray-500">Manage your properties and bookings.</p>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+        <form method="POST" action="/landlord-login" class="space-y-6">
+            <div class="space-y-2">
+                <label class="text-sm font-semibold text-gray-700 ml-1">Email Address</label>
+                <div class="relative">
+                    <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="email" name="email" required placeholder="landlord@email.com"
+                        class="input-field pl-12" />
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-sm font-semibold text-gray-700 ml-1">Password</label>
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="password" name="password" required placeholder="••••••••" class="input-field pl-12" />
+                </div>
+            </div>
+
+            <button type="submit" class="w-full btn-primary py-4 rounded-2xl text-lg font-bold">
+                Login to Partner Portal
+            </button>
+        </form>
+
+        <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+            <p class="text-gray-600">Want to join as a landlord? <a href="/landlord-signup"
+                    class="text-purple-600 font-bold hover:underline">Sign up here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

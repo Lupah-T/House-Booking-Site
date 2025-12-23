@@ -1,22 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Login</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 h-screen flex justify-center items-center">
-  <div class="bg-white p-8 rounded shadow-md w-96">
-    <h2 class="text-2xl font-bold text-purple-700 mb-4 text-center">Admin Login</h2>
-    <form action="/admin" method="POST">
-      <label class="block mb-2 text-sm">Username</label>
-      <input type="text" name="username" class="w-full px-3 py-2 border rounded mb-4" required>
+{% extends "layout.html" %}
 
-      <label class="block mb-2 text-sm">Password</label>
-      <input type="password" name="password" class="w-full px-3 py-2 border rounded mb-4" required>
+{% block title %}Admin Login - HomeHaven{% endblock %}
 
-      <button type="submit" class="bg-purple-700 text-white w-full py-2 rounded hover:bg-purple-800">Login</button>
-    </form>
+{% block content %}
+<div class="max-w-md mx-auto py-12 md:py-20 animate-fade-in">
+  <div class="text-center mb-10">
+    <h1 class="text-4xl font-bold mb-4">Admin Login</h1>
+    <p class="text-gray-500">Access the control panel to manage HomeHaven.</p>
   </div>
-</body>
-</html>
+
+  <div class="glass-card p-8 rounded-3xl">
+    <form method="POST" action="/admin" class="space-y-6">
+      <div class="space-y-2">
+        <label class="text-sm font-semibold text-gray-700 ml-1">Admin Email</label>
+        <div class="relative">
+          <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input type="email" name="email" required placeholder="admin@homehaven.com" class="input-field pl-12" />
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-sm font-semibold text-gray-700 ml-1">Password</label>
+        <div class="relative">
+          <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input type="password" name="password" required placeholder="••••••••" class="input-field pl-12" />
+        </div>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-gray-900 text-white py-4 rounded-2xl text-lg font-bold hover:bg-black transition shadow-lg">
+        Login to Control Panel
+      </button>
+    </form>
+
+    <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+      <p class="text-gray-600">New admin? <a href="/admin-signup"
+          class="text-purple-600 font-bold hover:underline">Register here</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

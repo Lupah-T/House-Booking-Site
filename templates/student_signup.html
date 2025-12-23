@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}Student Sign Up - HomeHaven{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto py-12 animate-fade-in">
+  <div class="text-center mb-10">
+    <h1 class="text-4xl font-bold mb-4">Join HomeHaven</h1>
+    <p class="text-gray-500">Create your account to start booking.</p>
+  </div>
+
+  <div class="glass-card p-8 rounded-3xl">
+    <form method="POST" action="/student-signup" class="space-y-5">
+      <div class="space-y-2">
+        <label class="text-sm font-semibold text-gray-700 ml-1">Full Name</label>
+        <input type="text" name="name" required placeholder="John Doe" class="input-field" />
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-sm font-semibold text-gray-700 ml-1">Email Address</label>
+        <input type="email" name="email" required placeholder="john.doe@email.com" class="input-field" />
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-sm font-semibold text-gray-700 ml-1">Year of Study</label>
+        <select name="year" required class="input-field">
+          <option value="" disabled selected>Select Year</option>
+          <option value="1">Year 1</option>
+          <option value="2">Year 2</option>
+          <option value="3">Year 3</option>
+          <option value="4">Year 4</option>
+        </select>
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-sm font-semibold text-gray-700 ml-1">Registration Number</label>
+        <input type="text" name="reg_no" required placeholder="SC211/XXXX/20XX" class="input-field" />
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-sm font-semibold text-gray-700 ml-1">Password</label>
+        <input type="password" name="password" required placeholder="••••••••" class="input-field" />
+      </div>
+
+      <button type="submit" class="w-full btn-primary py-4 rounded-2xl text-lg font-bold mt-2">
+        Create Account
+      </button>
+    </form>
+
+    <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+      <p class="text-gray-600">Already have an account? <a href="/student-login"
+          class="text-purple-600 font-bold hover:underline">Login here</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

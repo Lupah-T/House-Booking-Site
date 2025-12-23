@@ -1,15 +1,59 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Student Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 p-6">
-  <h1 class="text-3xl font-bold text-purple-700 mb-4">Welcome, {{ student[1] }}</h1>
-  <p class="mb-2">Reg No: {{ student[3] }}</p>
-  <p class="mb-4">Year: {{ student[2] }}</p>
+{% extends "layout.html" %}
 
-  <a href="/house" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">View Available Houses</a>
-  <a href="/logout" class="ml-4 text-red-600 hover:underline">Logout</a>
-</body>
-</html>
+{% block title %}Student Dashboard - HomeHaven{% endblock %}
+
+{% block content %}
+<div class="animate-fade-in">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+    <div>
+      <h1 class="text-4xl font-black text-[#003366] mb-2 uppercase italic tracking-tight">Student Portal</h1>
+      <p class="text-gray-500 font-medium">Manage your campus housing applications.</p>
+    </div>
+    <div class="flex gap-4">
+      <a href="/house" class="btn-primary shadow-lg border-b-4 border-[#00264d]">EXPLORE ROOMS</a>
+    </div>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+    <div class="glass-card p-10 bg-[#003366] text-white overflow-hidden relative group">
+      <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition duration-500">
+        <i class="fas fa-id-badge text-9xl"></i>
+      </div>
+      <div class="relative z-10">
+        <div class="text-[10px] font-black uppercase tracking-widest text-[#FFCC00] mb-4">Account Information</div>
+        <h2 class="text-3xl font-black mb-1">{{ session.get('student')['name'] }}</h2>
+        <div class="text-sm opacity-80 mb-6">{{ session.get('student')['email'] }}</div>
+        <div class="flex items-center gap-2 text-xs font-bold bg-white/10 w-fit px-3 py-1 rounded">
+          <i class="fas fa-university"></i>
+          MUT STUDENT - YEAR {{ session.get('student')['year'] }}
+        </div>
+      </div>
+    </div>
+
+    <div class="glass-card p-10 border-2 border-[#FFCC00] bg-white flex flex-col justify-center">
+      <div class="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Need Assistance?</div>
+      <h3 class="text-2xl font-black text-[#003366] mb-4">Institutional Housing Support</h3>
+      <p class="text-gray-500 text-sm mb-6">If you encounter issues with your booking or payment verification, contact
+        our support team immediately.</p>
+      <a href="/contact"
+        class="text-[#003366] font-extrabold text-sm hover:text-[#FFCC00] transition flex items-center gap-2 uppercase">
+        Open Support Ticket <i class="fas fa-headset"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="glass-card p-8 bg-white border-t-8 border-[#003366] shadow-xl">
+    <div class="flex justify-between items-center mb-8">
+      <h3 class="text-xl font-black text-[#003366] uppercase italic">Application Status</h3>
+      <a href="/my-bookings"
+        class="text-xs font-black text-[#003366] underline decoration-[#FFCC00] underline-offset-4">VIEW FULL
+        HISTORY</a>
+    </div>
+    <!-- Booking preview if any -->
+    <p class="text-gray-400 text-sm italic">Access your full booking history and transaction codes through the
+      navigation menu.</p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}Landlord Sign Up - HomeHaven{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto py-12 animate-fade-in">
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold mb-4">Partner with HomeHaven</h1>
+        <p class="text-gray-500">List your properties and reach thousands of students.</p>
+    </div>
+
+    <div class="glass-card p-8 rounded-3xl">
+        <form method="POST" action="/landlord-signup" class="space-y-5">
+            <div class="space-y-2">
+                <label class="text-sm font-semibold text-gray-700 ml-1">Email Address</label>
+                <input type="email" name="email" required placeholder="landlord@email.com" class="input-field" />
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-sm font-semibold text-gray-700 ml-1">Username</label>
+                <input type="text" name="username" required placeholder="Choose a username" class="input-field" />
+            </div>
+
+            <div class="space-y-2">
+                <label class="text-sm font-semibold text-gray-700 ml-1">Password</label>
+                <input type="password" name="password" required placeholder="••••••••" class="input-field" />
+            </div>
+
+            <button type="submit" class="w-full btn-primary py-4 rounded-2xl text-lg font-bold mt-2">
+                Register as Landlord
+            </button>
+        </form>
+
+        <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+            <p class="text-gray-600">Already a partner? <a href="/landlord-login"
+                    class="text-purple-600 font-bold hover:underline">Login here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+.env
+bookings.db
+__pycache__/
+*.pyc
+.DS_Store
+static/images/*
+!static/images/.gitkeep

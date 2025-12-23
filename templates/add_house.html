@@ -1,30 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Add New House</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 p-8">
-  <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
-    <h2 class="text-2xl font-bold mb-4 text-purple-700">Post New House</h2>
-    <form action="/add-house" method="POST" enctype="multipart/form-data">
-      <label class="block mb-2">House Name:</label>
-      <input type="text" name="name" required class="w-full border px-3 py-2 mb-4">
+{% extends "layout.html" %}
 
-      <label class="block mb-2">Description:</label>
-      <textarea name="description" required class="w-full border px-3 py-2 mb-4"></textarea>
+{% block title %}Post Property - HomeHaven{% endblock %}
 
-      <label class="block mb-2">Location:</label>
-      <input type="text" name="location" required class="w-full border px-3 py-2 mb-4">
+{% block content %}
+<div class="max-w-3xl mx-auto py-10 animate-fade-in">
+  <div class="text-center mb-10">
+    <h1 class="text-4xl font-extrabold text-[#003366] mb-4 uppercase italic">List New Property</h1>
+    <p class="text-gray-500 font-medium">Add a verified student residence to the portal.</p>
+  </div>
 
-      <label class="block mb-2">Image:</label>
-      <input type="file" name="image" accept="image/*" required class="mb-4">
+  <div class="glass-card p-10 rounded-3xl bg-white shadow-2xl border-t-8 border-[#FFCC00]">
+    <form action="/add-house" method="POST" enctype="multipart/form-data" class="space-y-6">
+      <div class="space-y-2">
+        <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Property Name</label>
+        <input type="text" name="name" placeholder="E.g. Sunrise Heights" required class="input-field">
+      </div>
 
-      <button type="submit" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">
-        Submit House
+      <div class="space-y-2">
+        <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Description</label>
+        <textarea name="description" placeholder="Describe the room, amenities, water, security etc." required
+          class="input-field h-32" style="resize: none;"></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Campus Area</label>
+          <select name="location" required class="input-field">
+            <option value="" disabled selected>Select Area</option>
+            <option value="Mukuyu">Mukuyu</option>
+            <option value="Town">Town</option>
+            <option value="Tities">Tities</option>
+            <option value="VM">VM</option>
+            <option value="Mangaza">Mangaza</option>
+            <option value="Pioneer">Pioneer</option>
+            <option value="Maingate road">Maingate road</option>
+            <option value="Umoja">Umoja</option>
+            <option value="Kayole">Kayole</option>
+            <option value="MCW">MCW</option>
+            <option value="Katiba">Katiba</option>
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">House Type</label>
+          <select name="house_type" required class="input-field">
+            <option value="" disabled selected>Select Type</option>
+            <option value="Bedsitter">Bedsitter</option>
+            <option value="Single Room">Single Room</option>
+            <option value="Double Room">Double Room</option>
+            <option value="1 Bedroom">1 Bedroom</option>
+            <option value="2 Bedroom">2 Bedroom</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Monthly Rent (Ksh)</label>
+          <input type="text" name="price" placeholder="E.g. 5000" required class="input-field">
+        </div>
+
+        <div class="space-y-2">
+          <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Contact Info</label>
+          <input type="text" name="contact" placeholder="E.g. 0712345678" required class="input-field">
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-xs font-black text-[#003366] uppercase ml-1 tracking-widest">Property Image</label>
+        <div
+          class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-[#e2e8f0] border-dashed rounded-xl bg-gray-50 hover:bg-gray-100 transition cursor-pointer relative">
+          <div class="space-y-1 text-center">
+            <i class="fas fa-camera text-4xl text-[#003366] opacity-30 mb-2"></i>
+            <div class="flex text-sm text-gray-600">
+              <span class="font-bold text-[#003366]">Click to upload house photo</span>
+            </div>
+            <p class="text-xs text-gray-400">Professional photos attract more bookings</p>
+          </div>
+          <input type="file" name="image" accept="image/*" required class="absolute inset-0 opacity-0 cursor-pointer">
+        </div>
+      </div>
+
+      <button type="submit" class="w-full btn-primary py-4 rounded shadow-lg">
+        PUBLISH PROPERTY LISTING
       </button>
     </form>
   </div>
-</body>
-</html>
+</div>
+{% endblock %}

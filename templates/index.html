@@ -1,47 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>House Booking System</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50">
-  <div class="max-w-6xl mx-auto py-10 px-6">
-    <h1 class="text-4xl font-bold text-center text-purple-700 mb-8">🏡 Welcome to the House Booking System</h1>
+{% extends "layout.html" %}
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-      <a href="/house" class="bg-white p-6 shadow rounded hover:shadow-md transition">
-        <h2 class="text-xl font-semibold mb-2">View Rooms</h2>
-        <p>Browse available houses and book instantly.</p>
-      </a>
+{% block title %}HomeHaven - MUT Student Housing Portal{% endblock %}
 
-      <a href="/booking" class="bg-white p-6 shadow rounded hover:shadow-md transition">
-        <h2 class="text-xl font-semibold mb-2">Book a Room</h2>
-        <p>Choose your preferred house and book online.</p>
-      </a>
-
-      <a href="/student-login" class="bg-white p-6 shadow rounded hover:shadow-md transition">
-        <h2 class="text-xl font-semibold mb-2">Student Login</h2>
-        <p>Access your dashboard, view and manage bookings.</p>
-      </a>
-
-      <a href="/add-house" class="bg-white p-6 shadow rounded hover:shadow-md transition">
-        <h2 class="text-xl font-semibold mb-2">Post a House</h2>
-        <p>Landlords can list their vacant houses with image and location.</p>
-      </a>
-
-      <a href="/admin" class="bg-white p-6 shadow rounded hover:shadow-md transition">
-        <h2 class="text-xl font-semibold mb-2">Admin Login</h2>
-        <p>Admins can manage all bookings and houses.</p>
-      </a>
-
-      <a href="/contact" class="bg-white p-6 shadow rounded hover:shadow-md transition">
-        <h2 class="text-xl font-semibold mb-2">Contact Us</h2>
-        <p>Reach out for help or inquiries.</p>
-      </a>
+{% block content %}
+<div class="animate-fade-in">
+  <!-- Hero Section -->
+  <div class="relative rounded-3xl overflow-hidden bg-[#003366] min-h-[500px] flex items-center mb-20 shadow-2xl">
+    <div
+      class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1555854817-5b2260d1bd63?auto=format&fit=crop&q=80')] bg-cover bg-center">
+    </div>
+    <div class="relative z-10 px-8 md:px-20 max-w-3xl">
+      <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+        Secure Your <span class="text-[#FFCC00]">Dream Study Space</span> Near MUT
+      </h1>
+      <p class="text-xl text-gray-200 mb-10 leading-relaxed font-medium">
+        The most trusted housing portal for Murang'a University of Technology students. Verified listings, secure
+        payments, and premium locations.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/house"
+          class="bg-[#FFCC00] text-[#003366] px-10 py-4 rounded-xl text-lg font-black hover:bg-white transition shadow-lg">VIEW
+          AVAILABLE ROOMS</a>
+        <a href="/student-login"
+          class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-white hover:text-[#003366] transition">LOGIN
+          TO PORTAL</a>
+      </div>
     </div>
   </div>
-</body>
-</html>
 
+  <!-- Stats Section -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
+    <div class="glass-card p-8 bg-white text-center border-b-4 border-[#003366]">
+      <div class="text-4xl font-black text-[#003366] mb-2">500+</div>
+      <div class="text-gray-500 font-bold uppercase text-xs tracking-widest">Active Listings</div>
+    </div>
+    <div class="glass-card p-8 bg-white text-center border-b-4 border-[#FFCC00]">
+      <div class="text-4xl font-black text-[#003366] mb-2">12+</div>
+      <div class="text-gray-500 font-bold uppercase text-xs tracking-widest">Premium Areas</div>
+    </div>
+    <div class="glass-card p-8 bg-white text-center border-b-4 border-[#003366]">
+      <div class="text-4xl font-black text-[#003366] mb-2">100%</div>
+      <div class="text-gray-500 font-bold uppercase text-xs tracking-widest">Verified Landlords</div>
+    </div>
+    <div class="glass-card p-8 bg-white text-center border-b-4 border-[#FFCC00]">
+      <div class="text-4xl font-black text-[#003366] mb-2">FAST</div>
+      <div class="text-gray-500 font-bold uppercase text-xs tracking-widest">Booking Process</div>
+    </div>
+  </div>
+
+  <!-- Feature Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+    <div>
+      <h2 class="text-3xl font-black text-[#003366] mb-6 uppercase">Why Choose HomeHaven?</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div
+            class="w-12 h-12 rounded-full bg-[#f0f4f8] flex-shrink-0 flex items-center justify-center text-[#003366] text-xl border border-[#003366]">
+            <i class="fas fa-check"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-[#003366] mb-1">Official Student Partner</h4>
+            <p class="text-sm text-gray-600">Tailored specifically for MUT students' needs and budget constraints.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div
+            class="w-12 h-12 rounded-full bg-[#f0f4f8] flex-shrink-0 flex items-center justify-center text-[#003366] text-xl border border-[#003366]">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-[#003366] mb-1">Secure Transactions</h4>
+            <p class="text-sm text-gray-600">All bookings are tracked with M-Pesa verification codes for transparency.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rounded-3xl overflow-hidden shadow-xl">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80"
+        alt="Student Life" class="w-full h-full object-cover">
+    </div>
+  </div>
+</div>
+{% endblock %}
